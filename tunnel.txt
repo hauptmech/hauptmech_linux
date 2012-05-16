@@ -1,0 +1,13 @@
+
+
+
+
+#For the server
+ssh root@zengineer
+ssh localhost -p 19999
+ssh tera
+ssh -R 10022:localhost:80 teh@dnd
+
+#For the svn repo setup:
+svn switch --relocate http://tera/svn/STEP1 http://localhost:10022/svn/STEP1
+
