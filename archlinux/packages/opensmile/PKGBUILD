@@ -1,0 +1,37 @@
+# Maintainer: hauptmech <hauptmech@gmail.com>
+pkgname=opensmile
+pkgver=1.0.1
+pkgrel=3
+pkgdesc="openSMILE - The Munich Versatile and Fast Open-Source Audio Feature Extractor."
+url="http://opensmile.sourceforge.net/"
+arch=('x86_64' 'i686')
+license=('GPLv3')
+depends=('portaudio')
+optdepends=()
+makedepends=()
+conflicts=()
+replaces=()
+backup=()
+install=
+source=("http://downloads.sourceforge.net/project/opensmile/opensmile-source-${pkgver}.tar.gz"
+        )
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}-sourceonly"
+  (./autogen.sh || true)
+  ./autogen.sh 
+  ./configure --prefix=/usr --with-portaudio=/usr/lib
+  make
+}
+
+package() {
+  sdir="${srcdir}/${pkgname}-${pkgver}-sourceonly"
+  cd $sdir
+  make DESTDIR="${pkgdir}" install
+  mkdir -p $pkgdir/usr/share/opensmile/config
+  cp -ar $sdir/config $pkgdir/usr/share/opensmile/
+#  install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+}
+
+# vim:set ts=2 sw=2 et:
+md5sums=('28d0f2599ce808282bf5ab2813e52b41')
