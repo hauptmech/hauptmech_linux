@@ -1,0 +1,43 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: hauptmech <hauptmech@gmail.com>
+pkgname=hauptmech
+pkgver=1
+pkgrel=1
+epoch=
+pkgdesc="All the stuff hauptmech depends on"
+arch=('i686' 'x86_64')
+url="https://github.com/hauptmech/hauptmech_linux"
+license=('GPL')
+groups=()
+depends=('vim')
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=('readme.txt')
+noextract=()
+
+build() {
+  cd "$srcdir"
+  echo "Building...."
+}
+
+package() {
+  cd "$srcdir"
+  mkdir -p $pkgdir/usr/share/hauptmech
+  install -D $srcdir/readme.txt $pkgdir/usr/share/hauptmech
+  
+}
+
+# vim:set ts=2 sw=2 et:
+md5sums=('6ab74207af2d0e5defd5bfeaa8bbc35e')
