@@ -4,20 +4,16 @@
 # then please put 'unknown'.
 
 # Maintainer: hauptmech <hauptmech@gmail.com>
-pkgname=hauptmech
+pkgname=hauptmech-gui
 pkgver=1
 pkgrel=1
 epoch=
-pkgdesc="All the stuff hauptmech depends on"
+pkgdesc="All the gui stuff hauptmech depends on"
 arch=('i686' 'x86_64')
 url="https://github.com/hauptmech/hauptmech_linux"
 license=('GPL')
 groups=()
-depends=(
-  'vim' 
-  'cmake'
-  'bash-completion'
-)
+depends=('awesome' 'vicious' 'meld' 'tc' 'tkl')
 makedepends=()
 checkdepends=()
 optdepends=()
@@ -38,8 +34,8 @@ build() {
 
 package() {
   cd "$srcdir"
-  mkdir -p $pkgdir/usr/share/hauptmech
-  install -D $srcdir/readme.txt $pkgdir/usr/share/hauptmech
+  mkdir -p $pkgdir/usr/share/hauptmech-gui
+  install -D $srcdir/readme.txt $pkgdir/usr/share/hauptmech-gui
   
 }
 

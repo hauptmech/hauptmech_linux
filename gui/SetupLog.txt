@@ -1,0 +1,2 @@
+#Clip off right side of touchpad to eliminate palm touches
+synclient AreaRightEdge=5000
