@@ -81,6 +81,30 @@ local layouts =
     awful.layout.suit.magnifier
 }
 -- }}}
+-- Keyboard map indicator and changer
+kbdcfg = {}
+kbdcfg.cmd = awful.util.getdir("config") .. "/xkb.sh"
+kbdcfg.layout = {  "us-dvorak","us" }
+--kbdcfg.layout = { "us" }
+kbdcfg.current = 1  -- default
+kbdcfg.widget = wibox.widget.textbox()
+
+kbdcfg.switch = function ()
+    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+    kbdcfg.set()
+end
+kbdcfg.set = function ()
+    local s = kbdcfg.layout[kbdcfg.current] -- style name
+    local t = " | " .. s .. " | "
+    kbdcfg.widget:set_text(t)
+    awful.util.spawn_with_shell( kbdcfg.cmd .. " " .. s )
+end
+
+kbdcfg.set()
+
+kbdcfg.widget:buttons(awful.util.table.join(
+awful.button({ }, 1, function () kbdcfg.switch() end)
+))
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
@@ -195,6 +219,7 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
+    right_layout:add(kbdcfg.widget)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
