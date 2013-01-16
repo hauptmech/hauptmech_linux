@@ -1,2 +1,17 @@
+#!/bin/sh
 #Clip off right side of touchpad to eliminate palm touches
 synclient AreaRightEdge=5000
+
+
+cat /etc/xdg/awesome/awesome.start <<'==='
+#!/bin/sh
+setxkbmap dvorak
+exec awesome
+===
+
+chmod 755 /etc/xdg/awesome/awesome.start
+
+sed -i /usr/share/xsessions/awesome.desktop -f - <<'==='
+s|^Exec.*|Exec=/etc/xdg/awesome/awesome.start|
+===
+

@@ -1,0 +1,79 @@
+[user]
+	email = hauptmech@gmail.com
+	name = hauptmech
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 959x1021+0+27
+	main-window-view = HistoryView
+	history-view-vpane-position = 422
+	file-view-vpane-position = 336
+
+[color]
+    branch = auto
+diff = auto
+status = auto
+
+[color "branch"]
+    current = red reverse
+local = blue
+remote = green
+
+[color "diff"]
+    meta = yellow bold
+frag = magenta bold
+old = red bold
+new = green bold
+
+[color "status"]
+    added = yellow
+changed = green
+untracked = cyan
+
+# }}}
+# push/pull/diff/options {{{
+[push]
+    default = tracking
+[pull]
+    default = current
+[diff]
+  memonicprefix = true
+[branch]
+  autosetuprebase = always
+[apply]
+  whitespace = nowarn
+
+[alias]
+    st = status -s
+
+    cl = clone
+
+    ci = commit
+cm = commit -m
+cma = commit -a -m
+
+
+co = checkout
+br = branch 
+
+ #list commands
+le = log --oneline --decorate
+ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+lc = "!f() { git ll "$1"^.."$1"; }; f"
+lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    #reset commands
+    r = reset
+r1 = reset HEAD^
+r2 = reset HEAD^^
+rh = reset --hard
+
+
+    #rename branch tree to done-
+    done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+
+
+
+
+

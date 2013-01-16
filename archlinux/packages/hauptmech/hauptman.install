@@ -11,7 +11,6 @@
 post_install() {
   # do something here
   #systemctl is looing for this...
-  sudo ln -s /usr/bin/ntfsfix /sbin/fsck.ntfs
   
 }
 
@@ -35,7 +34,6 @@ post_install() {
 ## arg 1:  the old package version
 post_remove() {
   # do something here
-  sudo rm /sbin/fsck.ntfs
 }
 
 # vim:set ts=2 sw=2 et:
