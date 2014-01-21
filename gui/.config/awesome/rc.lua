@@ -81,7 +81,8 @@ local layouts =
     awful.layout.suit.magnifier
 }
 -- }}}
--- Keyboard map indicator and changer
+
+-- {{{ Keyboard map indicator and changer
 kbdcfg = {}
 kbdcfg.cmd = awful.util.getdir("config") .. "/xkb.sh"
 kbdcfg.layout = {  "us-dvorak","us" }
@@ -105,6 +106,8 @@ kbdcfg.set()
 kbdcfg.widget:buttons(awful.util.table.join(
 awful.button({ }, 1, function () kbdcfg.switch() end)
 ))
+
+-- }}}
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
@@ -411,7 +414,7 @@ client.connect_signal("manage", function (c, startup)
     if not startup then
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.
-        -- awful.client.setslave(c)
+        awful.client.setslave(c)
 
         -- Put windows in a smart way, only if they does not set an initial position.
         if not c.size_hints.user_position and not c.size_hints.program_position then
